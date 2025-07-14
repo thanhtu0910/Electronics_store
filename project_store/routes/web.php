@@ -11,6 +11,7 @@ use App\Http\Controllers\Client\CheckoutController;
 use App\Http\Controllers\Client\OrderController;
 use App\Http\Controllers\UserDashboardController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Client\ChatAIController;
 
 Route::get('/', [ClientProductController::class, 'index'])->name('home');
 
@@ -62,5 +63,7 @@ Route::middleware(['auth', 'verified', 'admin'])->prefix('admin')->name('admin.'
     Route::get('orders/{order}', [AdminOrderController::class, 'show'])->name('orders.show');
     Route::patch('orders/{order}/status', [AdminOrderController::class, 'updateStatus'])->name('orders.update-status');
 });
+
+Route::post('/ai-chat', [ChatAIController::class, 'chat']);
 
 require __DIR__.'/auth.php';
